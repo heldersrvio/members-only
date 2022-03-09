@@ -37,6 +37,11 @@ const indexController = (() => {
 			new User({
 				email: req.body.email,
 				password: hashedPassword,
+				first_name: req.body.firstName,
+				last_name: req.body.lastName,
+				is_member: false,
+				is_admin: false,
+				avatar: req.body.avatar,
 			}).save((err) => {
 				if (err !== null) {
 					return next(err);

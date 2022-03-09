@@ -10,7 +10,7 @@ module.exports = {
 	},
 	plugins: ['prefer-arrow'],
 	rules: {
-		indent: ['error', 'tab'],
+		indent: 'off',
 		'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single', { avoidEscape: true }],
 		semi: ['error', 'always'],

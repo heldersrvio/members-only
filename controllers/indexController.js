@@ -7,6 +7,10 @@ const indexController = (() => {
 		res.send('Message list');
 	};
 
+	const messagePost = (_req, res) => {
+		res.send('Message post');
+	};
+
 	const logInGet = (_req, res) => {
 		res.render('logIn');
 	};
@@ -75,6 +79,7 @@ const indexController = (() => {
 
 	return {
 		messageList,
+		messagePost,
 		logInGet,
 		logInPost,
 		logOutGet,

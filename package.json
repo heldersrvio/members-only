@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "prepare": "husky install"
   },
   "dependencies": {
     "async": "^3.2.3",
@@ -21,6 +22,12 @@
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "prettier": "2.5.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }

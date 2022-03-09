@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+  h1 Log in 
+  form(method='POST' action='')
+    .form-group 
+      label(for='email') Email:
+      input#email(type='email' name='email')
+    .form-group
+      label(for='password') Password:
+      input#password(type='password' name='password')
+    .form-end 
+      button(type='submit') Enter
+      a(href='/signup') Don't have an account yet? Sign up.

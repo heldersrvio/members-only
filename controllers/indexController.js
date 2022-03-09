@@ -12,7 +12,14 @@ const indexController = (() => {
 	};
 
 	const logInGet = (_req, res) => {
-		res.render('logIn');
+		res.render('logIn', {
+			links: [
+				{
+					href: '/signup',
+					name: 'Sign up',
+				},
+			],
+		});
 	};
 
 	const logInPost = passport.authenticate('local', {
@@ -26,7 +33,14 @@ const indexController = (() => {
 	};
 
 	const signUpGet = (_req, res) => {
-		res.render('signUp');
+		res.render('signUp', {
+			links: [
+				{
+					href: '/login',
+					name: 'Log in',
+				},
+			],
+		});
 	};
 
 	const signUpPost = (req, res, next) => {

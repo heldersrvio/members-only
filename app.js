@@ -8,6 +8,7 @@ const path = require('path');
 const createError = require('http-errors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const User = require('./models/user');
@@ -37,13 +38,12 @@ passport.use(
 					return done(null, false, { message: 'Incorrect email address.' });
 				}
 				bcrypt.compare(password, user.password, (err, res) => {
-					if (res !== null) {
+					if (res) {
 						return done(null, user);
 					} else {
 						return done(null, false, { message: 'Incorrect password.' });
 					}
 				});
-				return done(null, user);
 			});
 		},
 	),

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
     "prepare": "husky install"
   },
   "dependencies": {

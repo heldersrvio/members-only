@@ -1,12 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Kalam:wght@300;400;700&family=Patrick+Hand&display=swap');
+
 :root {
 	--columbia-blue: #d0f1ff;
 	--orange-crayola: #ff6b35;
 	--peach-crayola: #f7c59f;
 	--usafa-blue: #004e89;
 	--sapphire-blue: #1a659e;
+	--grey: #c7c7c7;
+	--patrick-hand-font: 'Patrick Hand', cursive;
+	--exo-font: 'Exo', sans-serif;
+	--kalam-font: 'Kalam', cursive;
+	padding: 0;
 }
 
 body {
-	padding: 50px;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 0;
+	background-color: var(--columbia-blue);
+}
+
+a {
+	font-family: var(--exo-font);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--usafa-blue);
+	padding: 15px;
+	border-bottom: 3px dashed var(--peach-crayola);
+}
+
+header a {
+	color: var(--peach-crayola);
+	text-decoration: none;
+}
+
+header #home-link {
+	font-family: var(--patrick-hand-font);
+	color: var(--peach-crayola);
+	font-size: 1.8rem;
+	text-decoration: none;
+}
+
+header .links a:hover {
+	text-decoration: underline;
+}
+
+main {
+	padding: 30px clamp(5vw, 200px, 15vw);
+}
+
+h1 {
+	font-family: var(--exo-font);
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: var(--sapphire-blue);
+	text-align: center;
+}
+
+form {
+	margin: 25px 0;
+}
+
+label {
+	font-family: var(--exo-font);
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+label {
+	margin-right: 10px;
+}
+
+.form-group {
+	margin: 5px 0;
+}
+
+input:not([type='hidden']) {
+	border-radius: 5px;
+	font-size: 1rem;
+	border: 2px solid var(--grey);
+	padding: 1px 4px;
+}
+
+.image-display {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 15px;
+	justify-content: center;
+	margin: 15px 0;
+}
+
+.image-display img {
+	width: 128px;
+	cursor: pointer;
+	padding: 30px;
+	border-radius: 5px;
+	border: 7px solid var(--grey);
+}
+
+.image-display img.selected {
+	background-color: var(--sapphire-blue);
+	border-color: var(--usafa-blue);
+}
+
+form .form-end {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	margin: 30px 0;
+}
+
+form .form-end button {
+	cursor: pointer;
+	padding: 5px 20px;
+	text-transform: uppercase;
+	background-color: var(--sapphire-blue);
+	color: var(--columbia-blue);
+	font-family: var(--exo-font);
+	font-size: 1rem;
+	border-radius: 5px;
+	border: 2px solid var(--grey);
+}
+
+form .form-end button:hover {
+	background-color: var(--usafa-blue);
+}
+
+form .form-end a {
+	text-decoration: none;
+	font-size: 0.9rem;
+}
+
+form .form-end a:hover {
+	text-decoration: underline;
 }

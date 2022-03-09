@@ -1,0 +1,48 @@
+extends layout 
+
+block content 
+  script.
+    const selectAvatar = (event) => {
+      if (event.target.src !== undefined) {
+         document.getElementById('avatar').value = event.target.src;
+      }
+      const images = document.getElementsByTagName('img');
+      for (let i = 0; i < images.length; i++) {
+        images[i].classList.remove('selected');
+        if (images[i].src === event.target.src) {
+          images[i].classList.toggle('selected');
+        }
+      }
+    };
+  h1 Sign up 
+  form(method='POST' action='')
+    .form-group 
+      label(for='avatar') Avatar:
+      div.image-display(onclick="selectAvatar(event)")
+        img(src='https://img.icons8.com/dusk/256/000000/pelican--v1.png' alt='Pelican')
+        img(src='https://img.icons8.com/dusk/256/000000/bug.png' alt='Bug')
+        img(src='https://img.icons8.com/dusk/256/000000/alpaca--v1.png' alt='Alpaca')
+        img(src='https://img.icons8.com/dusk/256/000000/pig.png' alt='Pig')
+        img(src='https://img.icons8.com/dusk/256/000000/turtle.png' alt='Turtle')
+        img(src='https://img.icons8.com/dusk/256/000000/axolotl--v1.png' alt='Axolotl')
+        img(src='https://img.icons8.com/dusk/256/000000/stingray.png' alt='Stingray')
+        img(src='https://img.icons8.com/dusk/256/000000/walrus.png' alt='Walrus')
+      input#avatar(type='hidden' name='avatar')
+    .form-group 
+      label(for='email') Email:
+      input#email(type='email' name='email' placeholder='john@mail.com')
+    .form-group
+      label(for='first-name') First name:
+      input#first-name(type='text' name='firstName' placeholder='John')
+    .form-group
+      label(for='last-name') Last name:
+      input#last-name(type='text' name='lastName' placeholder='Stuart')
+    .form-group
+      label(for='password') Password:
+      input#password(type='password' name='password')
+    .form-group
+      label(for='password-confirm') Confirm password:
+      input#password-confirm(type='password' name='passwordConfirm')
+    .form-end 
+      button(type='submit') Submit 
+      a(href='/login') Already have an account? Log in.

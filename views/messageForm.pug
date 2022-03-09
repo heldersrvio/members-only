@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+  h1 New message 
+  form(method='POST' action='')
+    .form-group
+        label(for='title') Title:
+        input#title(type='text' name='title')
+    .form-group
+      label(for='content') Message:
+      textarea#content(name='content')
+    .form-end 
+      button(type='submit') Send

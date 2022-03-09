@@ -1,14 +1,98 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../models/user');
+const Message = require('../models/message');
 
 const indexController = (() => {
-	const messageList = (_req, res) => {
-		res.send('Message list');
+	const messageList = (req, res, next) => {
+		const isLoggedIn = req.user !== null && req.user !== undefined;
+		const hasMemberAuthorization = isLoggedIn && req.user.is_member;
+		const query = hasMemberAuthorization
+			? Message.find().sort({ timestamp: -1 }).populate('author', '-password')
+			: Message.find().sort({ timestamp: -1 }).select('title content');
+		query.exec((err, listMessages) => {
+			if (err !== null) {
+				return next(err);
+			}
+			res.render('index', {
+				messageList: listMessages,
+				links: hasMemberAuthorization
+					? [
+							{
+								href: '/logout',
+								name: 'Log out',
+							},
+					  ]
+					: isLoggedIn
+					? [
+							{
+								href: '/membership',
+								name: 'Become a member',
+							},
+					  ]
+					: [
+							{
+								href: '/login',
+								name: 'Log in',
+							},
+							{
+								href: '/signup',
+								name: 'Sign up',
+							},
+					  ],
+			});
+		});
 	};
 
-	const messagePost = (_req, res) => {
-		res.send('Message post');
+	const messageFormGet = (req, res) => {
+		const isLoggedIn = req.user !== null && req.user !== undefined;
+		const hasMemberAuthorization = isLoggedIn && req.user.is_member;
+		if (isLoggedIn) {
+			res.render('messageForm', {
+				links: hasMemberAuthorization
+					? [
+							{
+								href: '/logout',
+								name: 'Log out',
+							},
+					  ]
+					: [
+							{
+								href: '/membership',
+								name: 'Become a member',
+							},
+							{
+								href: '/logout',
+								name: 'Log out',
+							},
+					  ],
+			});
+		} else {
+			res.redirect('/login');
+		}
+	};
+
+	const messageFormPost = (req, res, next) => {
+		const isLoggedIn = req.user !== null && req.user !== undefined;
+		if (isLoggedIn) {
+			User.findById(req.user._id).exec((err, user) => {
+				const message = new Message({
+					title: req.body.title,
+					content: req.body.content,
+					timestamp: new Date(),
+					author: user,
+				});
+				message.save((err) => {
+					if (err !== null) {
+						console.log(err);
+						return next(err);
+					}
+					res.redirect('/');
+				});
+			});
+		} else {
+			res.redirect('/login');
+		}
 	};
 
 	const logInGet = (_req, res) => {
@@ -23,7 +107,7 @@ const indexController = (() => {
 	};
 
 	const logInPost = passport.authenticate('local', {
-		successRedirect: '/',
+		successRedirect: '/message/new',
 		failureRedirect: '/login',
 	});
 
@@ -61,7 +145,7 @@ const indexController = (() => {
 					return next(err);
 				}
 
-				res.redirect('/');
+				res.redirect('/message/new');
 			});
 		});
 	};
@@ -98,7 +182,8 @@ const indexController = (() => {
 
 	return {
 		messageList,
-		messagePost,
+		messageFormGet,
+		messageFormPost,
 		logInGet,
 		logInPost,
 		logOutGet,

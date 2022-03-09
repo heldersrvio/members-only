@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  ul.messages 
+    each message in messageList 
+      li.message 
+        h2 #{message.title}
+        p #{message.content}
+        if message.author 
+          span #{message.author.name}
+        if message.timestamp 
+          span #{message.time}

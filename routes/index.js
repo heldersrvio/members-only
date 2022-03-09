@@ -5,7 +5,9 @@ const controller = require('../controllers/indexController');
 
 router.get('/', controller.messageList);
 
-router.post('/', controller.messagePost);
+router.get('/message/new', controller.messageFormGet);
+
+router.post('/message/new', controller.messageFormPost);
 
 router.get('/login', controller.logInGet);
 

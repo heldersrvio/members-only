@@ -1,0 +1,5 @@
+node_modules
+.husky/
+.eslintcache
+.DS_Store
+.env

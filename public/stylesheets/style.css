@@ -1,8 +1,12 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root {
+	--columbia-blue: #d0f1ff;
+	--orange-crayola: #ff6b35;
+	--peach-crayola: #f7c59f;
+	--usafa-blue: #004e89;
+	--sapphire-blue: #1a659e;
 }
 
-a {
-  color: #00B7FF;
+body {
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

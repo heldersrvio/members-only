@@ -3,11 +3,15 @@ extends layout
 block content 
   h1 New message 
   form(method='POST' action='')
+    if errors
+      ul.error-list 
+        for error in errors 
+          li #{error.msg}
     .form-group
         label(for='title') Title:
-        input#title(type='text' name='title')
+        input#title(type='text' name='title' required='true' value=(title === undefined ? '' : title))
     .form-group
       label(for='content') Message:
-      textarea#content(name='content')
+      textarea#content(name='content' cols='30' rows='5' required='true' value=(content === undefined ? '' : content))
     .form-end 
       button(type='submit') Send

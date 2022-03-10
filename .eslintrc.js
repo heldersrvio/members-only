@@ -11,6 +11,7 @@ module.exports = {
 	plugins: ['prefer-arrow'],
 	rules: {
 		indent: 'off',
+		'no-mixed-spaces-and-tabs': 'off',
 		'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single', { avoidEscape: true }],
 		semi: ['error', 'always'],

@@ -16,7 +16,11 @@ block content
     };
   h1 Sign up 
   form(method='POST' action='')
-    .form-group 
+    if errors
+      ul.error-list 
+        for error in errors 
+          li #{error.msg}
+    .form-group.avatar-form-group
       label(for='avatar') Avatar:
       div.image-display(onclick="selectAvatar(event)")
         img(src='https://img.icons8.com/dusk/256/000000/pelican--v1.png' alt='Pelican')
@@ -27,22 +31,22 @@ block content
         img(src='https://img.icons8.com/dusk/256/000000/axolotl--v1.png' alt='Axolotl')
         img(src='https://img.icons8.com/dusk/256/000000/stingray.png' alt='Stingray')
         img(src='https://img.icons8.com/dusk/256/000000/walrus.png' alt='Walrus')
-      input#avatar(type='hidden' name='avatar')
+      input#avatar(type='hidden' name='avatar' required='true' value=(avatar === undefined ? '' : avatar))
     .form-group 
       label(for='email') Email:
-      input#email(type='email' name='email' placeholder='john@mail.com')
+      input#email(type='email' name='email' placeholder='john@mail.com' required='true' value=(email === undefined ? '' : email))
     .form-group
       label(for='first-name') First name:
-      input#first-name(type='text' name='firstName' placeholder='John')
+      input#first-name(type='text' name='firstName' placeholder='John' required='true' value=(firstName === undefined ? '' : firstName))
     .form-group
       label(for='last-name') Last name:
-      input#last-name(type='text' name='lastName' placeholder='Stuart')
+      input#last-name(type='text' name='lastName' placeholder='Stuart' required='true' value=(lastName === undefined ? '' : lastName))
     .form-group
       label(for='password') Password:
-      input#password(type='password' name='password')
+      input#password(type='password' name='password' required='true')
     .form-group
       label(for='password-confirm') Confirm password:
-      input#password-confirm(type='password' name='passwordConfirm')
+      input#password-confirm(type='password' name='passwordConfirm' required='true')
     .form-end 
       button(type='submit') Submit 
       a(href='/login') Already have an account? Log in.

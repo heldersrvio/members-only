@@ -3,12 +3,16 @@ extends layout
 block content 
   h1 Log in 
   form(method='POST' action='')
+    if errors
+      ul.error-list 
+        for error in errors 
+          li #{error.msg}
     .form-group 
       label(for='email') Email:
-      input#email(type='email' name='email')
+      input#email(type='email' name='email' required='true' value=(email === undefined ? '' : email))
     .form-group
       label(for='password') Password:
-      input#password(type='password' name='password')
+      input#password(type='password' name='password' required='true')
     .form-end 
       button(type='submit') Enter
       a(href='/signup') Don't have an account yet? Sign up.

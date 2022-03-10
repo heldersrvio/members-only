@@ -23,4 +23,6 @@ router.get('/membership', controller.membershipGet);
 
 router.post('/membership', controller.membershipPost);
 
+router.post('/:id', controller.messageDelete);
+
 module.exports = router;
